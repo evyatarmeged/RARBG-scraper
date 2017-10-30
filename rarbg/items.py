@@ -6,7 +6,7 @@ import scrapy
 class Torrent(scrapy.Item):
     title = scrapy.Field()
     url = scrapy.Field()
-    date = scrapy.Field()
+    upload_date = scrapy.Field()
     size = scrapy.Field()
     seeders = scrapy.Field()
     leechers = scrapy.Field()
