@@ -10,7 +10,7 @@ class TorrentSpider(scrapy.Spider):
     name = "rarbg"
     # URL of movie torrents sorted by seeders descending order
     start_urls = \
-        ['http://rarbg.to/torrents.php?category=14;17;42;44;45;46;47;48;50;51;52&search=&order=seeders&by=DESC']
+        ['http://rarbgproxy.org/torrents.php?category=14;17;42;44;45;46;47;48;50;51;52&search=&order=seeders&by=DESC']
 
     def parse(self, response):
         for page_url in response.css('#pager_links > a::attr(href)').extract():

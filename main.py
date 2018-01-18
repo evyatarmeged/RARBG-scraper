@@ -1,7 +1,14 @@
-from scrapy import cmdline
+from scrapy import crawler
+from rarbg.spiders.rarbg_spider import TorrentSpider
 
 
-# Added this main.py to debug the spider. Can be run from here instead of the command line if preferred.
-# Output can be written to 'jsonlines', 'marshal', 'pickle', 'xml', 'json', 'csv', 'jl'
+def main():
+    spider = crawler.CrawlerProcess()
+    spider.crawl(TorrentSpider)
+    spider.start()
 
-cmdline.execute("scrapy crawl rarbg -o torrentz.xml".split())
+
+if __name__ == '__main__':
+    main()
+
+
