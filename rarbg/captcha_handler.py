@@ -10,10 +10,9 @@ class CaptchaHandler:
     def __init__(self):
         self.filename = 'solved_captcha.png'
 
-    def get_captcha(self, src):
-        img = requests.get(src)
+    def get_captcha(self, img_data):
         with open(self.filename, 'wb') as captcha_image:
-            captcha_image.write(img.content)
+            captcha_image.write(img_data)
         return self.solve_captcha(self.filename)
 
     @staticmethod

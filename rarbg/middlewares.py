@@ -77,8 +77,11 @@ class ThreatDefenceRedirectMiddleware(RedirectMiddleware):
         # Find
         captcha = self.driver.find_element_by_xpath("//img[contains(@src, 'captcha')]")
         LOGGER.info('Found CAPTCHA image: {0}'.format(captcha.get_attribute('src')))
+        image_data = captcha.screenshot_as_png
         # Solve
-        solved_captcha = self.captcha_handler.get_captcha(src=captcha.get_attribute('src'))
+        solved_captcha = self.captcha_handler.get_captcha(image_data)
+        if solved_captcha is None:
+            raise NoSuchElementException
         LOGGER.info('CAPTCHA solved: {0}'.format(solved_captcha))
         input_field = self.driver.find_element_by_id('solve_string')
         input_field.send_keys(solved_captcha)
